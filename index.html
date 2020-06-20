@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
     <link ref="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="style.css" />
     <title>Weather App</title>
   </head>
 
@@ -20,15 +20,43 @@
     </div>
   </nav>
 
+  <div>
+  <!-- Left side bar -->
+    <div id = "left-div"> Left Box
+      <!-- search bar -->
+      <nav class="navbar navbar-light bg-light p-5">
+        <form class="form-inline">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </nav>
+
+      <div class="p-3 m-5" id = "weather-locations"> all weather locations go here
+        <!-- all searches go here  -->
+
+      </div>
+    </div>
+
+<!-- Right side bar -->
+    <div id = "right-div"> Right box
+      <div class="p-3 m-5" id = "current-weather"> Current Weather!
+        <!-- Current weather data  -->
+      </div>
+      
+    </div>
+ 
+  </div>
+
+
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="#"></script>
     <script src="#"></script>
-
-<script>
+    <script>
  
 
-</script>
+    </script>
 
   </body>
 </html>
