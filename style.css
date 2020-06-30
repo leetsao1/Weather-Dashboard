@@ -4,25 +4,49 @@
     border: solid black 1px;
     width: 30%;
     height: 500px;
-    background-color: gray;
+    background-color: lightgrey;
 }
 
 #right-div{
     color:red;
     float: left;
-    border: solid black 1px;
+    /* border: solid black 1px; */
     width: 70%;
-    height: 500px;
+    height: auto;
 }
 
 #weather-locations {
-    border: solid black 1px;
+    border: solid 1px lightgray;
     margin: 5px;
     padding: 5px;
 }
 
 #current-weather {
-    border: solid black 1px;
+    border: solid 1px lightgray;
     margin: 5px;
     padding: 5px;
+}
+
+#future-forecast {
+    border: solid 1px lightgray;
+    margin: 5px;
+    padding: 5px;
+    overflow: auto;
+}
+
+.five-day-forecast{
+    border: 1px solid lightgray;
+    border-radius: 1rem;
+    background-color: lightskyblue;
+    float: left;
+    margin: 25px 10px;
+    width: auto;
+    height: auto;
+    padding: 20px 10px;
+
+}
+
+img {
+    /* height: 100px; */
+    width: 50px;
 }

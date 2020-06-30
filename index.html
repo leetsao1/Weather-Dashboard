@@ -16,13 +16,13 @@
  <!-- Title Nav -->
  <nav class="navbar navbar-light bg-dark text-white"> 
     <div class="mx-auto">
-     <h1 >Weather Dashboard</h1>
+     <h1>Weather Dashboard</h1>
     </div>
   </nav>
 
   <div>
   <!-- Left side bar -->
-    <div id = "left-div"> Left Box
+    <div id = "left-div">
       <!-- search bar -->
       <nav class="navbar navbar-light bg-light p-5">
         <form class="form-inline">
@@ -31,32 +31,73 @@
         </form>
       </nav>
 
-      <div class="p-3 m-5" id = "weather-locations"> all weather locations go here
+      <div class="p-3 m-5" id = "weather-locations"> All locations below:
+        
         <!-- all searches go here  -->
 
       </div>
     </div>
 
 <!-- Right side bar -->
-    <div id = "right-div"> Right box
-      <div class="p-3 m-5" id = "current-weather"> Current Weather!
+    <div id = "right-div"> 
+      <div class="p-3 m-5" id = "current-weather"> 
         <!-- Current weather data  -->
+        <div id="current-location"></div>
+        <h6 id="current-icon" ></h6>    
+        <h6 id="current-temperature" >Temperature:</h6>
+        <h6 id="current-humidity">Humidity:</h6>
+        <h6 id="current-windspeed" >Wind Speed:</h6>
+        <h6 id="current-uv">UV Index:</h6>
       </div>
-      
+
+    <!-- <div id = "right-div">  -->
+      <div class="p-3 m-5" id = "future-forecast"> 
+        <!-- squares -->
+        <h4>5-Day Forecast</h4>
+
+        <!-- <div class="five-day-forecast" >
+          <h4 id = "day" >Day 1</h4>
+          <h6 id = "date"  >Date:</h6>
+          <h6 id = "icon"  >Icon:</h6>
+          <h6 id = "temp" >Temp:</h6>
+          <h6 id = "Humidity" >Humidity</h6>
+        </div> -->
+
+        </div>
+       <!-- </div> -->
+      </div>
     </div>
  
-  </div>
-
 
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="#"></script>
-    <script src="#"></script>
-    <script>
- 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src= "weatherAPI.js" ></script>
+    <!-- <script>
 
-    </script>
+var key = "51727a8b82bfa19792db2f23ff500b2b";
+      // var queryURL1= "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + key ;
+      var queryURL2= `http://api.openweathermap.org/data/2.5/weather?q=London&appid=` + key ;
+      
+
+    // Calls location
+      $.ajax({
+        "async": false,
+        "crossDomain": true,
+        url: queryURL2 , 
+        method: "GET"
+        }).done (function(response){
+        console.log(response);
+        var weatherIcon = response.weather[0].icon;
+
+        $('#icon').append('<img src="http://openweathermap.org/img/wn/' + weatherIcon + '@2x.png">');
+        
+
+      });
+
+
+    </script> -->
 
   </body>
 </html>
