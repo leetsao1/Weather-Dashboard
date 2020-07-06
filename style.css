@@ -58,3 +58,7 @@ img {
     margin: 0px;
     /* border-radius: 1rem; */
 }
+
+#fuckingBtn{
+    z-index: 100;
+}

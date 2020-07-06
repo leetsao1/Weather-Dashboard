@@ -1,3 +1,5 @@
+$(document).ready(function () {
+
 // Variables for current weather
 var weatherLocation;
 var weatherCurrent;
@@ -21,6 +23,27 @@ function todaysDate (){
   var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
   var yyyy = today.getFullYear();
   return today = mm + '/' + dd + '/' + yyyy;
+}
+
+function updateDashboard(){
+
+   //   Updates Current Weather Dashboard 
+  var currentImgObj = '<img src="http://openweathermap.org/img/wn/' + weatherCurrent.weather[0].icon + '@2x.png">';
+  $('#current-location').html('<h4>' + weatherObject.timezone + ' - ('+ todaysDate() + ') '+ currentImgObj+'</h4>');
+  $('#current-temperature').text("Temperature: " + KtoF(weatherCurrent.temp).toPrecision(4)  + " DegF");
+  $('#current-humidity').text("Humidity: " +weatherCurrent.humidity + " %");
+  $('#current-windspeed').text("Wind Speed: " +weatherCurrent.wind_speed + " MPH");
+  $('#current-uv').text("UV Index: " +weatherCurrent.uvi);
+  
+  // Updates Forecast 5 day Dashboard
+  for( var i = 1 ; i <6 ; i++){
+    // console.log(weatherForecast[i].weather[0].icon);
+    var forecastImgObj = '<img src="http://openweathermap.org/img/wn/' + weatherForecast[i].weather[0].icon+ '@2x.png">' ;
+    $('#future-forecast').append('<div class="five-day-forecast" id = "forecast-'+i+'" ><h5>Day ' +i+ '</h5></div>');
+    $('#forecast-'+i).append(forecastImgObj);
+    $('#forecast-'+i).append('<h6 id = "temp-'+i+'" >Temp: ' + KtoF(weatherForecast[i].temp.day).toPrecision(4)  + ' DegF</h6>');
+    $('#forecast-'+i).append('<h6 id = "humidity-'+i+'" >Humidity:' + weatherForecast[i].humidity + '%</h6>');
+  }
 }
 
 //  *** API CALL 1 ***
@@ -55,40 +78,50 @@ function weatherCall (newCity){
         weatherForecast = response.daily;
       });
 
+      
     //   Updates Current Weather Dashboard 
-      var currentImgObj = '<img src="http://openweathermap.org/img/wn/' + weatherCurrent.weather[0].icon + '@2x.png">';
-      $('#current-location').append('<h4>' + weatherObject.timezone + ' - ('+ todaysDate() + ') '+ currentImgObj+'</h4>');
-      $('#current-temperature').text("Temperature: " + KtoF(weatherCurrent.temp).toPrecision(4)  + " DegF");
-      $('#current-humidity').text("Humidity: " +weatherCurrent.humidity + " %");
-      $('#current-windspeed').text("Wind Speed: " +weatherCurrent.wind_speed + " MPH");
-      $('#current-uv').text("UV Index: " +weatherCurrent.uvi);
+      // var currentImgObj = '<img src="http://openweathermap.org/img/wn/' + weatherCurrent.weather[0].icon + '@2x.png">';
+      // $('#current-location').html('<h4>' + weatherObject.timezone + ' - ('+ todaysDate() + ') '+ currentImgObj+'</h4>');
+      // $('#current-temperature').text("Temperature: " + KtoF(weatherCurrent.temp).toPrecision(4)  + " DegF");
+      // $('#current-humidity').text("Humidity: " +weatherCurrent.humidity + " %");
+      // $('#current-windspeed').text("Wind Speed: " +weatherCurrent.wind_speed + " MPH");
+      // $('#current-uv').text("UV Index: " +weatherCurrent.uvi);
       
-      // Updates Forecast 5 day Dashboard
-      for( var i = 1 ; i <6 ; i++){
-        console.log(weatherForecast[i].weather[0].icon);
-        var forecastImgObj = '<img src="http://openweathermap.org/img/wn/' + weatherForecast[i].weather[0].icon+ '@2x.png">' ;
-        $('#future-forecast').append('<div class="five-day-forecast" id = "forecast-'+i+'" ><h5>Day ' +i+ '</h5></div>');
-        $('#forecast-'+i).append(forecastImgObj);
-        $('#forecast-'+i).append('<h6 id = "temp-'+i+'" >Temp: ' + KtoF(weatherForecast[i].temp.day).toPrecision(4)  + ' DegF</h6>');
-        $('#forecast-'+i).append('<h6 id = "humidity-'+i+'" >Humidity:' + weatherForecast[i].humidity + '%</h6>');
-      
-      
-      }
+      // // Updates Forecast 5 day Dashboard
+      // for( var i = 1 ; i <6 ; i++){
+      //   // console.log(weatherForecast[i].weather[0].icon);
+      //   var forecastImgObj = '<img src="http://openweathermap.org/img/wn/' + weatherForecast[i].weather[0].icon+ '@2x.png">' ;
+      //   $('#future-forecast').append('<div class="five-day-forecast" id = "forecast-'+i+'" ><h5>Day ' +i+ '</h5></div>');
+      //   $('#forecast-'+i).append(forecastImgObj);
+      //   $('#forecast-'+i).append('<h6 id = "temp-'+i+'" >Temp: ' + KtoF(weatherForecast[i].temp.day).toPrecision(4)  + ' DegF</h6>');
+      //   $('#forecast-'+i).append('<h6 id = "humidity-'+i+'" >Humidity:' + weatherForecast[i].humidity + '%</h6>');
+      // }
     } //**End of API CALL */
 
+function removeForecast(){
+  for( var i = 1 ; i <6 ; i++){
+    $('#forecast-' + i  ).remove();
+  }
+}
 
 $("#newCityBtn").on("click" , function (){
-  event.preventDefault();
   var newCity = $("#newCityInput").val();
-
+  event.preventDefault();
+  removeForecast();
+  
   if (newCity !== ""){
     weatherCall(newCity);
-    $("#weather-locations").append("<button class='cityBlock'>" + newCity + "</button>");
-    console.log(newCity); 
+    updateDashboard();
+    $("#weather-locations").append("<button id='fuckingBtn' class='cityBlock btn btn-outline-success' value ='"+ newCity +"' type='button' >" + newCity + "</button>");
     }
-  })
+  });
 
+  $("body").on("click" ,"#fuckingBtn" , function (){
+    var existingCity = $(this).val();
+    removeForecast();
+    weatherCall(existingCity);
+    updateDashboard();
+  });
 
-
- 
+}); //document ready
 
