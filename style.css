@@ -1,10 +1,10 @@
 #left-div{
     color: blue;
     float: left;
-    border: solid black 1px;
+    /* border: solid black 1px; */
     width: 30%;
-    height: 500px;
-    background-color: lightgrey;
+    height: auto;
+    /* background-color:rgb(3, 252, 227) */
 }
 
 #right-div{
@@ -57,8 +57,91 @@ img {
     padding: 15px 25px;
     margin: 0px;
     /* border-radius: 1rem; */
+    /* float: left;
+    clear: both; */
 }
 
 #fuckingBtn{
     z-index: 100;
+    background-color: whitesmoke;
+    color: black;
+    
 }
+
+@media only screen and (max-width: 375px) {
+.navbar h1{
+    font-size: 28px;
+}
+.navbar{
+    text-align: center;
+    height: 75px;
+}
+
+#right-div, #left-div{
+    width: 100%;
+}
+
+.five-day-forecast {
+    width: 90%;
+}
+
+
+#weather-locations{
+    height: 150px;
+    overflow: scroll;
+}
+
+#newCityInput{
+    padding: 0px;
+}
+
+.p-5{
+    padding: 10px !important;
+    }
+#newCityBtn{
+    text-align: right;
+}
+.form-inline{
+    flex-flow: nowrap;
+    padding-left: 55px;
+}
+  }
+
+  @media only screen and (max-width: 414px) {
+    .navbar h1{
+        font-size: 28px;
+    }
+    .navbar{
+        text-align: center;
+        height: 75px;
+    }
+    
+    #right-div, #left-div{
+        width: 100%;
+    }
+    
+    .five-day-forecast {
+        width: 90%;
+    }
+    
+    
+    #weather-locations{
+        height: 150px;
+        overflow: scroll;
+    }
+    
+    #newCityInput{
+        padding: 0px;
+    }
+    
+    .p-5{
+        padding: 10px !important;
+        }
+    #newCityBtn{
+        text-align: right;
+    }
+    .form-inline{
+        flex-flow: nowrap;
+        padding-left: 55px;
+    }
+      }
